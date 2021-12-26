@@ -1,0 +1,29 @@
+{
+  "problem": {
+    "obstacles": ["./obstacles.json"],
+    "field size": [
+      [300, 300],
+      [200, 400]
+    ],
+    "num mobiles": [10, 20, 30],
+    "num statics": [10, 20, 30]
+  },
+  "solver": {
+    "cmd": "single-bridge",
+    "args": {
+      "alpha": {
+        "key": "-a",
+        "values": [0.0]
+      },
+      "rrt sampling": {
+        "key": "-r",
+        "values": [500, 1000]
+      }
+    }
+  },
+  "config": {
+    "output path": "./result.csv",
+    "working dir": "./tmp",
+    "trials": 1
+  }
+}

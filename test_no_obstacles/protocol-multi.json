@@ -1,0 +1,30 @@
+{
+  "problem": {
+    "field size": [
+      [200, 200],
+      [400, 400],
+      [600, 600],
+      [800, 600]
+    ],
+    "num mobiles": [20, 30, 40],
+    "num statics": [0, 20, 40]
+  },
+  "solver": {
+    "cmd": "multi-bridge",
+    "args": {
+      "rrt sampling": {
+        "key": "-r",
+        "values": [500]
+      },
+      "prm sampling": {
+        "key": "-p",
+        "values": [40]
+      }
+    }
+  },
+  "config": {
+    "output path": "./result-multi.csv",
+    "working dir": "./tmp-multi",
+    "trials": 100
+  }
+}
