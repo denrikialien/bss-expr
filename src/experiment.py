@@ -7,6 +7,7 @@ import datetime
 import numpy as np
 import hashlib
 import tempfile as tmp
+import shutil
 
 
 # %%
@@ -167,7 +168,6 @@ def new_problem_instance(
 def make_problem_file(
     filepath, field_size, size_obstacle, num_static, num_mobile, num_obstacle
 ):
-
     instance = new_problem_instance(
         field_size, size_obstacle, num_static, num_mobile, num_obstacle
     )
@@ -202,13 +202,15 @@ def read_protocol_file(filepath):
 def make_problem_files(
     num, field_size, size_obstacle, num_static, num_mobile, num_obstacle
 ):
-
     id = "{},{},{},{},{},{}".format(
         num, field_size, size_obstacle, num_static, num_mobile, num_obstacle
     )
 
     dirname = hashlib.sha256(id.encode("utf-8")).hexdigest()
     dirpath = "{}/{}".format(tmp.gettempdir(), dirname)
+
+    if os.path.exists(dirpath) and len(os.listdir) < num:
+        shutil.rmtree(dirpath)
 
     if not os.path.exists(dirpath):
         os.mkdir(dirpath)
