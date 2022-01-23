@@ -209,7 +209,7 @@ def make_problem_files(
     dirname = hashlib.sha256(id.encode("utf-8")).hexdigest()
     dirpath = "{}/{}".format(tmp.gettempdir(), dirname)
 
-    if os.path.exists(dirpath) and len(os.listdir()) < num:
+    if os.path.exists(dirpath) and len(os.listdir(dirpath)) < num:
         shutil.rmtree(dirpath)
 
     if not os.path.exists(dirpath):
