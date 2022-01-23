@@ -1,0 +1,57 @@
+# %%
+import sys
+
+sys.path.append("../src")
+from experiment import experiment
+
+
+# %%
+def run(cmd, fw, fh, ns, rm, no):
+    protocol = {
+        "variables": {
+            "field width": fw,
+            "field height": fh,
+            "obstacle width": 40,
+            "obstacle height": 40,
+            "num mobiles": round(ns * rm / 100),
+            "num statics": ns - round(ns * rm / 100),
+            "num obstacles": no,
+        },
+        "config": {
+            "command": cmd,
+            "outdir": "./fw{}-fh{}-ns{}-rm{}-no{}".format(fw, fh, ns, rm, no),
+            "trials": 2,
+            "verbose": False,
+        },
+    }
+
+    experiment(protocol)
+
+
+# %%
+field_width = list(range(200, 1000 + 1, 100))
+# field_height = list(range(200, 400 + 1, 100))
+field_height = 400
+num_sensors = list(range(20, 100 + 1, 10))
+ratio_mobiles = list(range(20, 100 + 1, 10))
+num_obstacles = list(range(0, 100 + 1, 10))
+
+params = [
+    (fw, fh, ns, rm, no)
+    for fw in field_width
+    for fh in field_height
+    for ns in num_sensors
+    for rm in ratio_mobiles
+    for no in num_obstacles
+]
+
+# %%
+if __name__ == "__main__":
+    cmd = sys.argv[1]
+    for (case, (fw, fh, ns, rm, no)) in enumerate(params):
+        print(
+            "CASE {}/{} | [fw:{}] [fh:{}] [ns:{}] [rm:{}] [no:{}]".format(
+                case + 1, len(params), fw, fh, ns, rm, no
+            )
+        )
+        run(cmd, fw, fh, ns, rm, no)
