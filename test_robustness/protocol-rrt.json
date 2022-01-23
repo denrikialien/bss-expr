@@ -1,0 +1,18 @@
+{
+  "problem": {
+    "field size": [[600, 400]],
+    "num mobiles": [30, 40],
+    "num statics": [30, 40],
+    "num obstacles": [20, 25, 30, 35, 40],
+    "obstacles": ["./obstacles.json"]
+  },
+  "solver": {
+    "cmd": "rrt-net -n 5000 --prm-max-sampling 300 --prm-rnear 50",
+    "args": {}
+  },
+  "config": {
+    "output path": "./result-rrt.csv",
+    "working dir": "./tmp-rrt",
+    "trials": 5
+  }
+}

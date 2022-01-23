@@ -100,6 +100,10 @@ def make_problem_recipe(problem, path):
         with open(problem["obstacles"]) as f:
             obs_var = json.load(f)
 
+    no = 0
+    if "num obstacles" in problem:
+        no = problem["num obstacles"]
+
     recipe = json.dumps(
         {
             "field_origin": [0.0, 0.0],
@@ -108,7 +112,7 @@ def make_problem_recipe(problem, path):
             "east_base_pos": [fw, fh / 2],
             "num_mobiles": nm,
             "num_statics": ns,
-            "num_obstacles": 0,
+            "num_obstacles": no,
             "obstacle_variants": obs_var,
         }
     )
