@@ -287,9 +287,9 @@ def experiment(protocol):
     )
 
     update_uptime_mean = live_mean()
-    update_error_count = new_counter(1)
+    update_err_mean = live_mean()
     mean_uptime = 0
-    error_count = 0
+    err_rate = 0
 
     started_at = datetime.datetime.now()
     for i, infile in enumerate(pbmfiles):
@@ -310,12 +310,10 @@ def experiment(protocol):
 
         if uptime > 0:
             mean_uptime = update_uptime_mean(uptime)
-        else:
-            error_count = update_error_count()
+        err_rate = update_err_mean(int(uptime == 0)) * 100
 
         laptime = round_ended_at - round_started_at
         acc_laptime = round_ended_at - started_at
-        err_rate = error_count / len(pbmfiles) * 100
 
         print(
             "[#{}/{}] [{}] [+{}] uptime: {:.1f} [h], uptime(mean): {:.1f} [h], error-rate: {:.1f} %".format(

@@ -36,13 +36,11 @@ def run(cmd, fw, fh, ns, rm, no):
 
 
 # %%
-field_width = list(range(200, 1000 + 1, 100))
-# field_height = list(range(200, 400 + 1, 100))
+field_width = [600]
 field_height = [400]
-num_sensors = list(range(20, 100 + 1, 10))
-ratio_mobiles = list(range(20, 100 + 1, 10))
-# num_obstacles = list(range(0, 100 + 1, 10))
-num_obstacles = [50]
+num_sensors = list(range(30, 200 + 1, 10))
+ratio_mobiles = [50]
+num_obstacles = [30]
 
 params = [
     (fw, fh, ns, rm, no)
